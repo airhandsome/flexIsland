@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexIsland 设置</title>
+    <style>
+        :root{--bg:#0f172a;--panel:#111827;--border:#374151;--accent:#6366f1;--text:#e5e7eb;--muted:#9ca3af}
+        *{box-sizing:border-box}
+        body{margin:0;font-family:Segoe UI,Arial;background:linear-gradient(135deg,#0f172a,#111827);color:var(--text)}
+        .wrap{padding:20px}
+        h2{margin:0 0 16px 0;font-size:18px;font-weight:700}
+        .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+        .row{display:flex;align-items:center;justify-content:space-between;margin:10px 0;gap:12px}
+        select,input[type=range]{background:#1f2937;color:var(--text);border:1px solid var(--border);padding:8px;border-radius:8px;flex:1}
+        label{margin-right:12px;color:var(--muted)}
+        .actions{display:flex;justify-content:flex-end;gap:12px;margin-top:8px}
+        .btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer}
+        .btn:disabled{opacity:.6;cursor:not-allowed}
+    </style>
+    <script>
+        const { ipcRenderer } = require('electron');
+        async function init(){
+            const cfg = await ipcRenderer.invoke('get-config');
+            document.getElementById('opacity').value = cfg.opacity || 0.9;
+            document.getElementById('opacityValue').innerText = Math.round((cfg.opacity||0.9)*100)+'%';
+            document.getElementById('theme').value = cfg.theme || 'gradient';
+            ['showTime','showBattery','showNetwork','showNotifications','showMedia','alwaysOnTop'].forEach(k=>{
+                const el = document.getElementById(k);
+                if (el && typeof cfg[k] !== 'undefined') el.checked = !!cfg[k];
+            });
+            setDirty(false);
+        }
+        async function save(){
+            const newCfg = {
+                opacity: parseFloat(document.getElementById('opacity').value),
+                theme: document.getElementById('theme').value,
+                showTime: document.getElementById('showTime').checked,
+                showBattery: document.getElementById('showBattery').checked,
+                showNetwork: document.getElementById('showNetwork').checked,
+                showNotifications: document.getElementById('showNotifications').checked,
+                showMedia: document.getElementById('showMedia').checked,
+                alwaysOnTop: document.getElementById('alwaysOnTop').checked
+            };
+            await ipcRenderer.invoke('set-config', newCfg);
+            setDirty(false);
+        }
+        function onOpacity(e){
+            document.getElementById('opacityValue').innerText = Math.round(parseFloat(e.target.value)*100)+'%';
+            setDirty(true);
+        }
+        function setDirty(d){
+            document.getElementById('saveBtn').disabled = !d;
+        }
+        function markDirty(){ setDirty(true); }
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <h2>FlexIsland 设置</h2>
+        <div class="card">
+            <div class="row">
+                <label>透明度</label>
+                <input id="opacity" type="range" min="0.1" max="1" step="0.05" oninput="onOpacity(event)" onchange="markDirty()">
+                <span id="opacityValue">90%</span>
+            </div>
+            <div class="row">
+                <label>主题</label>
+                <select id="theme" onchange="markDirty()">
+                    <option value="gradient">多彩渐变</option>
+                    <option value="blue">蓝色系</option>
+                    <option value="green">绿色系</option>
+                    <option value="glass">深色毛玻璃</option>
+                    <option value="light">浅色（基础）</option>
+                    <option value="dark">深色（基础）</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </div>
+        </div>
+        <div class="card">
+            <div class="row"><label><input id="showTime" type="checkbox" onchange="markDirty()"> 显示时间</label></div>
+            <div class="row"><label><input id="showBattery" type="checkbox" onchange="markDirty()"> 显示电池</label></div>
+            <div class="row"><label><input id="showNetwork" type="checkbox" onchange="markDirty()"> 显示网络</label></div>
+            <div class="row"><label><input id="showNotifications" type="checkbox" onchange="markDirty()"> 显示通知</label></div>
+            <div class="row"><label><input id="showMedia" type="checkbox" onchange="markDirty()"> 显示媒体</label></div>
+            <div class="row"><label><input id="alwaysOnTop" type="checkbox" onchange="markDirty()"> 始终置顶</label></div>
+        </div>
+        <div class="actions">
+            <button id="saveBtn" class="btn" onclick="save()" disabled>保存设置</button>
+        </div>
+    </div>
+</body>
+</html>

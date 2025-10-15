@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexIsland Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .test-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎉 FlexIsland 测试页面</h1>
+        <div class="status">
+            <strong>✅ Electron 渲染进程正常工作</strong>
+        </div>
+        <div class="status">
+            <strong>✅ HTML/CSS 加载成功</strong>
+        </div>
+        <div class="status">
+            <strong>✅ 毛玻璃效果正常</strong>
+        </div>
+        <div class="status">
+            <strong>⏰ 当前时间: <span id="time"></span></strong>
+        </div>
+        <div class="status">
+            <strong>🖥️ 屏幕分辨率: <span id="screen"></span></strong>
+        </div>
+    </div>
+
+    <script>
+        // 显示当前时间
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('time').textContent = now.toLocaleTimeString('zh-CN');
+        }
+        
+        // 显示屏幕分辨率
+        document.getElementById('screen').textContent = 
+            `${window.screen.width}x${window.screen.height}`;
+        
+        // 更新时间
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        console.log('FlexIsland 测试页面加载完成');
+    </script>
+</body>
+</html>
