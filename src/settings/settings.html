@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵动岛设置</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div class="settings-container">
+        <div class="settings-header">
+            <h1>⚙ 灵动岛设置</h1>
+            <button id="close-settings" class="close-btn">×</button>
+        </div>
+        
+        <div class="settings-content">
+            <!-- 内容设置 -->
+            <div class="settings-section">
+                <h2>📱 内容设置</h2>
+                
+                <div class="setting-item">
+                    <label for="rotation-interval">自动轮播间隔</label>
+                    <div class="slider-container">
+                        <input type="range" id="rotation-interval" min="5" max="30" value="10">
+                        <span id="interval-value">10</span>
+                        <span class="unit">秒</span>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <label for="notification-type">通知类型筛选</label>
+                    <select id="notification-type">
+                        <option value="all">全部通知</option>
+                        <option value="message">消息通知</option>
+                        <option value="call">电话通知</option>
+                        <option value="email">邮件通知</option>
+                        <option value="music">音乐通知</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="auto-rotation" checked>
+                        <span class="checkmark"></span>
+                        启用自动轮播
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="sound-notifications">
+                        <span class="checkmark"></span>
+                        启用声音通知
+                    </label>
+                </div>
+            </div>
+            
+            <!-- 样式主题设置 -->
+            <div class="settings-section">
+                <h2>🎨 样式主题</h2>
+                
+                <div class="setting-item">
+                    <label>预设主题风格</label>
+                    <div class="preset-themes">
+                        <div class="preset-theme active" data-preset="instagram">
+                            <div class="preset-preview instagram-preview"></div>
+                            <span>Instagram</span>
+                        </div>
+                        <div class="preset-theme" data-preset="apple">
+                            <div class="preset-preview apple-preview"></div>
+                            <span>Apple</span>
+                        </div>
+                        <div class="preset-theme" data-preset="xiaomi">
+                            <div class="preset-preview xiaomi-preview"></div>
+                            <span>小米</span>
+                        </div>
+                        <div class="preset-theme" data-preset="huawei">
+                            <div class="preset-preview huawei-preview"></div>
+                            <span>华为</span>
+                        </div>
+                        <div class="preset-theme" data-preset="google">
+                            <div class="preset-preview google-preview"></div>
+                            <span>Google</span>
+                        </div>
+                        <div class="preset-theme" data-preset="microsoft">
+                            <div class="preset-preview microsoft-preview"></div>
+                            <span>Microsoft</span>
+                        </div>
+                        <div class="preset-theme" data-preset="vivo">
+                            <div class="preset-preview vivo-preview"></div>
+                            <span>VIVO</span>
+                        </div>
+                        <div class="preset-theme" data-preset="neon">
+                            <div class="preset-preview neon-preview"></div>
+                            <span>霓虹</span>
+                        </div>
+                        <div class="preset-theme" data-preset="gradient">
+                            <div class="preset-preview gradient-preview"></div>
+                            <span>多彩渐变</span>
+                        </div>
+                        <div class="preset-theme" data-preset="oppo">
+                            <div class="preset-preview oppo-preview"></div>
+                            <span>OPPO</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <label for="border-width">边框粗细（最大10px）</label>
+                    <div class="slider-container">
+                        <input type="range" id="border-width" min="0" max="10" value="1">
+                        <span id="border-width-value">1px</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>自定义背景图</label>
+                    <div class="image-upload">
+                        <input type="file" id="bg-image" accept="image/*">
+                        <button id="clear-bg" class="btn-secondary">清除背景图</button>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>背景颜色与边框颜色</label>
+                    <div class="color-pickers">
+                        <div class="color-field">
+                            <span>背景颜色</span>
+                            <input type="color" id="bg-color" value="#000000">
+                        </div>
+                        <div class="color-field">
+                            <span>边框颜色</span>
+                            <input type="color" id="border-color" value="#ffffff">
+                        </div>
+                    </div>
+                </div>            
+
+                <div class="setting-item">
+                    <label>字体颜色与大小</label>
+                    <div class="color-pickers">
+                        <div class="color-field">
+                            <span>字体颜色</span>
+                            <input type="color" id="font-color" value="#ffffff">
+                        </div>
+                        <div class="color-field">
+                            <span>字体大小</span>
+                            <input type="range" id="font-size" min="10" max="24" value="14">
+                            <span id="font-size-value">14px</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <label for="opacity">透明度</label>
+                    <div class="slider-container">
+                        <input type="range" id="opacity" min="0.3" max="1" step="0.1" value="0.8">
+                        <span id="opacity-value">80%</span>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <label for="blur-intensity">毛玻璃强度</label>
+                    <div class="slider-container">
+                        <input type="range" id="blur-intensity" min="5" max="30" value="20">
+                        <span id="blur-value">20px</span>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <label for="border-radius">圆角大小</label>
+                    <div class="slider-container">
+                        <input type="range" id="border-radius" min="10" max="30" value="25">
+                        <span id="radius-value">25px</span>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <label for="position">显示位置</label>
+                    <select id="position">
+                        <option value="top-center">顶部中央</option>
+                        <option value="top-left">顶部左侧</option>
+                        <option value="top-right">顶部右侧</option>
+                        <option value="bottom-center">底部中央</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- 高级设置 -->
+            <div class="settings-section">
+                <h2>⚡ 高级设置</h2>
+                
+                <div class="setting-item">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="always-on-top" checked>
+                        <span class="checkmark"></span>
+                        始终置顶显示
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="show-in-taskbar">
+                        <span class="checkmark"></span>
+                        在任务栏显示
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="start-minimized">
+                        <span class="checkmark"></span>
+                        启动时最小化
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings-footer">
+            <button id="reset-settings" class="reset-btn">重置设置</button>
+            <button id="save-settings" class="save-btn">保存设置</button>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

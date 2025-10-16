@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵动岛通知</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dynamic-island">
+        <div class="island-content">
+            <div class="notification-item" id="notification">
+                <div class="notification-icon">
+                    <div class="icon-circle">
+                        <span class="icon">📱</span>
+                    </div>
+                </div>
+                <div class="notification-text">
+                    <div class="notification-title">新消息</div>
+                    <div class="notification-message">您有一条新的微信消息</div>
+                </div>
+                <div class="notification-time">刚刚</div>
+            </div>
+            <!-- 收起态迷你系统状态 -->
+            <div class="mini-stats" id="miniStats">
+                <span id="miniCPU">CPU --%</span>
+                <span class="divider">|</span>
+                <span id="miniUp">↑ --</span>
+                <span id="miniDown">↓ --</span>
+            </div>
+            
+            <!-- 控制按钮 -->
+            <div id="control-buttons">
+                <button id="expand-btn" class="control-btn" title="展开/收起">▼</button>
+                <button id="settings-btn" class="control-btn" title="设置">⚙</button>
+                <button id="close-btn" class="control-btn" title="关闭">✕</button>
+            </div>
+        </div>
+        
+        <!-- 扩展状态 -->
+        <div class="expanded-content" id="expandedContent" style="display: none;">
+            <div class="expanded-header">
+                <div class="app-info">
+                    <div class="app-icon">📱</div>
+                    <div class="app-details">
+                        <div class="app-name">微信</div>
+                        <div class="app-status">在线</div>
+                    </div>
+                </div>
+                <div class="close-btn" onclick="hideExpanded()">×</div>
+            </div>
+            <div class="message-preview">
+                <div class="sender">张三</div>
+                <div class="message">你好，今天天气怎么样？</div>
+            </div>
+
+            <!-- 系统信息 -->
+            <div class="system-info" id="systemInfo">
+                <div class="sys-item">
+                    <div class="sys-label">电量</div>
+                    <div class="sys-value" id="sysBattery">--</div>
+                </div>
+                <div class="sys-item">
+                    <div class="sys-label">CPU</div>
+                    <div class="sys-value" id="sysCPU">--</div>
+                </div>
+                <div class="sys-item">
+                    <div class="sys-label">内存</div>
+                    <div class="sys-value" id="sysMem">--</div>
+                </div>
+                <div class="sys-item">
+                    <div class="sys-label">网络</div>
+                    <div class="sys-value" id="sysNet">--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

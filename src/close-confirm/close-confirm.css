@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: transparent; /* 透明背景 */
+    color: #ffffff;
+    overflow: hidden;
+    user-select: none;
+}
+
+.confirm-container {
+    width: 100vw;
+    height: 100vh;
+    background: transparent; /* 容器透明 */
+    backdrop-filter: none; /* 不要毛玻璃，以免看起来有底背景 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.confirm-content {
+    background: rgba(0, 0, 0, 0.9); /* 仅前景卡片保留 */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 32px;
+    width: 400px;
+    max-width: 90vw;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+}
+
+.confirm-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.confirm-icon {
+    font-size: 32px;
+    animation: pulse 2s infinite;
+}
+
+.confirm-header h2 {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.confirm-body {
+    margin-bottom: 32px;
+}
+
+.confirm-body p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+}
+
+.confirm-subtitle {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 14px !important;
+}
+
+.confirm-footer {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+}
+
+.confirm-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.confirm-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.confirm-btn:hover::before {
+    left: 100%;
+}
+
+.cancel-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.confirm-btn {
+    background: linear-gradient(135deg, #ff3b30 0%, #d70015 100%);
+    color: #ffffff;
+    border: 1px solid #ff3b30;
+}
+
+.confirm-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 59, 48, 0.4);
+}
+
+.confirm-btn:active {
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+    }
+    to { 
+        opacity: 1; 
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .confirm-content {
+        padding: 24px;
+        width: 350px;
+    }
+    
+    .confirm-header h2 {
+        font-size: 20px;
+    }
+    
+    .confirm-body p {
+        font-size: 14px;
+    }
+    
+    .confirm-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        min-width: 80px;
+    }
+    
+    .confirm-footer {
+        gap: 12px;
+    }
+}
